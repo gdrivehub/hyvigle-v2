@@ -1,0 +1,115 @@
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: rgba(10,10,15,0.9);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  gap: 12px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Next button */
+.skipBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+.skipBtn:hover {
+  background: #a0ffc8;
+  transform: translateY(-1px);
+  box-shadow: var(--glow);
+}
+
+.skipBtn:active {
+  transform: translateY(0);
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.iconBtn:hover:not(:disabled) {
+  background: var(--surface2);
+  border-color: var(--border2);
+}
+
+.iconBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.off {
+  background: rgba(255,79,107,0.15) !important;
+  border-color: rgba(255,79,107,0.3) !important;
+  color: var(--danger) !important;
+}
+
+.reportConfirm {
+  background: rgba(255,179,71,0.15) !important;
+  border-color: rgba(255,179,71,0.4) !important;
+  color: var(--warn) !important;
+  animation: glow-pulse 0.8s ease infinite;
+}
+
+.reportSent {
+  background: rgba(127,255,178,0.15) !important;
+  border-color: var(--border2) !important;
+  color: var(--accent) !important;
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg);
+}
+
+@media (max-width: 480px) {
+  .bar { padding: 10px 12px; }
+  .skipBtn { padding: 9px 16px; font-size: 14px; }
+  .iconBtn { width: 40px; height: 40px; }
+}
