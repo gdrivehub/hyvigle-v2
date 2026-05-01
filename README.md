@@ -9,7 +9,7 @@
 
 ---
 Here is Deployed version of Hyvigle: 
-[Link]([url](https://specified-olivia-manrisky73-fafba554.koyeb.app/))
+Link - https://specified-olivia-manrisky73-fafba554.koyeb.app/
 
 
 ## ✨ Features
