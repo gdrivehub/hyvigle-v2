@@ -1,12 +1,22 @@
 import React from "react";
 import styles from "./StatusOverlay.module.css";
 
-export default function StatusOverlay({ status, mode, onRetry }) {
+export default function StatusOverlay({ status, mode, onStart, onRetry }) {
+  if (status === "idle" || status === "stopped") {
+    return (
+      <div className={styles.overlay}>
+        <div className={styles.icon}>🎥</div>
+        <p className={styles.title}>Click Start to begin</p>
+        <button className={styles.startBtn} onClick={onStart}>Start</button>
+      </div>
+    );
+  }
+
   if (status === "requesting") {
     return (
       <div className={styles.overlay}>
         <div className={styles.spinner} />
-        <p className={styles.title}>Requesting permissions...</p>
+        <p className={styles.title}>Requesting permissions…</p>
         <p className={styles.sub}>Please allow camera and microphone access.</p>
       </div>
     );
@@ -21,10 +31,8 @@ export default function StatusOverlay({ status, mode, onRetry }) {
           <div className={styles.ring} style={{ animationDelay: "1s" }} />
           <div className={styles.dot} />
         </div>
-        <p className={styles.title}>Finding a stranger...</p>
-        <p className={styles.sub}>
-          {mode === "audio" ? "Audio-only" : "Video"} match · Please wait
-        </p>
+        <p className={styles.title}>Finding a stranger…</p>
+        <p className={styles.sub}>{mode === "text" ? "Text" : "Video"} match · Please wait</p>
       </div>
     );
   }
@@ -34,7 +42,7 @@ export default function StatusOverlay({ status, mode, onRetry }) {
       <div className={styles.overlay}>
         <div className={styles.icon}>👋</div>
         <p className={styles.title}>Stranger disconnected</p>
-        <p className={styles.sub}>Finding you a new match...</p>
+        <p className={styles.sub}>Finding a new match…</p>
       </div>
     );
   }
@@ -51,9 +59,7 @@ export default function StatusOverlay({ status, mode, onRetry }) {
         </div>
         <p className={styles.title}>Permission denied</p>
         <p className={styles.sub}>Camera/microphone access is required.</p>
-        <button className={styles.retryBtn} onClick={onRetry}>
-          Try again
-        </button>
+        <button className={styles.retryBtn} onClick={onRetry}>Try again</button>
       </div>
     );
   }

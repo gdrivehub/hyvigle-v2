@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import ThemeToggle from "../components/ThemeToggle.jsx";
 import styles from "./HomePage.module.css";
 
-export default function HomePage({ onStart }) {
+export default function HomePage({ onStart, theme, toggleTheme }) {
   const [mode, setMode] = useState("video");
 
   return (
     <div className={styles.page}>
       <div className={styles.grid} aria-hidden />
+
+      {/* Theme toggle — top right */}
+      <div className={styles.themeBtn}>
+        <ThemeToggle theme={theme} onToggle={toggleTheme} />
+      </div>
 
       <main className={styles.hero}>
         <div className={styles.badge}>Anonymous · Real-time · Free</div>
@@ -22,7 +28,6 @@ export default function HomePage({ onStart }) {
 
         {/* Mode selector */}
         <div className={styles.modeSelector} role="group" aria-label="Chat mode">
-
           <button
             className={`${styles.modeBtn} ${mode === "video" ? styles.modeBtnActive : ""}`}
             onClick={() => setMode("video")}
@@ -33,7 +38,6 @@ export default function HomePage({ onStart }) {
             </svg>
             Video Chat
           </button>
-
           <button
             className={`${styles.modeBtn} ${mode === "text" ? styles.modeBtnActive : ""}`}
             onClick={() => setMode("text")}
@@ -43,15 +47,12 @@ export default function HomePage({ onStart }) {
             </svg>
             Text Only
           </button>
-
         </div>
 
-        {/* Mode description */}
         <p className={styles.modeDesc}>
           {mode === "video"
             ? "Share your webcam and talk face-to-face with a stranger."
-            : "Chat anonymously via text only — no camera or mic needed."
-          }
+            : "Chat anonymously via text — no camera or mic needed."}
         </p>
 
         <button className={styles.startBtn} onClick={() => onStart(mode)}>
